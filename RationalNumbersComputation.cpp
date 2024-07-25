@@ -11,7 +11,7 @@ class Rational
         numerator=n;
         denominator=d;
     }
-    friend Rational operator+(Rational rk1, Rational rk2);
+    friend Rational operator+(Rational rk1, Rational rk2);//friend operator overloading
     friend ostream & operator<<(ostream &out, Rational &rk);
     
 };
@@ -46,22 +46,21 @@ Rational operator+(Rational rk1, Rational rk2)
         }
         for(auto hk:arr)
         {
-            cout<<"arr["<<length<<"]:"<<hk<<endl;
             if(hk>0)
                 length+=1;
         }
-        cout<<"length:"<<length<<endl;
-        int factor1 = rk1.denominator/arr[length-1];
-        cout<<"factor1:"<<factor1<<endl;
+        
+        int factor1 = rk1.denominator/arr[length-1]; //arr[length-1] will give the highest common factor
         int factor2 = rk2.denominator/arr[length-1];
-        cout<<"factor2:"<<factor2<<endl;
+        
         temp.numerator = (rk1.numerator*factor2)+(rk2.numerator*factor1);
         temp.denominator = arr[length-1]*factor1*factor2;
         
     }
     return temp;
 }
-ostream & operator<<(ostream &out, Rational &rk)
+//insertion operator overloading
+ostream & operator<<(ostream &out, Rational &rk)    
 {
     out<<rk.numerator<<"/"<<rk.denominator;
     return out;
@@ -70,7 +69,7 @@ int main()
 {
     Rational rk1(4,248), rk2(3,24), rk3;
     rk3 = rk1+rk2;
-    cout<<"The sum of "<<rk1;
+    cout<<"The sum of "<<rk1; //insertion operator can only take 2 arguments (cout, rk)
     cout<<" and "<<rk2;
     cout<<" is "<<rk3;
     return 0;
